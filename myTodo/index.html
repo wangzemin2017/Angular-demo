@@ -18,7 +18,7 @@
 			</header>
 			<!-- This section should be hidden by default and shown when there are todos -->
 			<section class="main">
-				<input class="toggle-all" type="checkbox" ng-click="selectAll()" ng-model="all">
+				<input class="toggle-all" type="checkbox" ng-click="selectAll()" ng-model="all" ng-show="tasks.length">
 				<label for="toggle-all">Mark all as complete</label>
 				<ul class="todo-list">
 					<!-- These are here just to show the structure of the list items -->
@@ -30,13 +30,13 @@
 							<button class="destroy" ng-click="remove(task)"></button>
 						</div>
 						<form ng-submit="save()">
-							<input class="edit" ng-model='task.input'>
+							<input class="edit" ng-model='task.input' get-Focused>
 						</form>
 					</li>
 				</ul>
 			</section>
 			<!-- This footer should hidden by default and shown when there are todos -->
-			<footer class="footer">
+			<footer class="footer" ng-show="tasks.length">
 				<!-- This should be `0 items left` by default -->
 				<span class="todo-count"><strong ng-bind="taskLeft()"></strong> item left</span>
 				<!-- Remove this if you don't implement routing -->

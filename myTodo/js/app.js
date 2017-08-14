@@ -3,8 +3,9 @@
 
 	// 创建一个myTodo模块和mainCtrl控制器，是入口文件
 	angular.module('myTodo', [])
-		.controller('mainCtrl' ,function($scope){
+		.controller('mainCtrl' ,function($scope, todoFty){
 
+			$scope.tasks = todoFty.get();
 			$scope.tasks = [
 				{ 
 					id: 1, 
@@ -34,13 +35,16 @@
 				$scope.tasks.splice($scope.tasks.indexOf(current),1);
 			};
 
+			$scope.focused = false;
 			//双击编辑任务
 			$scope.edit = function(task){
 				$scope.currentId = task.id;
+				$scope.focused = true;
 			};
 
 			//保存编辑好的任务
 			$scope.save = function(){
+				todoFty.set($scope.tasks);
 				$scope.currentId = 0;
 			};
 
@@ -82,5 +86,19 @@
 				}
 			};
 
+			//All,Active,Completed
+			//console.log($location)
+
 	})
+	
+	// .directive('getFocused', [function(){
+	// 	return {
+	// 		scope: false,
+	// 		link: function(scope,element){
+	// 			scope.$watch('focused', function(new,old,scope){
+	// 				element[0].focus();
+	// 			}, true);
+	// 		}
+	// 	};
+	// }]);
 })(angular);
