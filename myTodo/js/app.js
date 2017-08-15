@@ -11,7 +11,8 @@
 					id: 1, 
 					input:'abc', 
 					completed:false
-				},{id:2, input:'def', completed:false}
+				},{id:2, input:'def', completed:false},
+				{id:3, input:'test', completed:false}
 			];
 			//绑定 What needs to be done? 输入框的内容
 			$scope.input = '';
@@ -27,6 +28,7 @@
 				$scope.tasks.push({id: Math.random(), input: $scope.input, completed: false});
 				//console.log($scope.tasks);
 				$scope.input = '';
+				$scope.save();
 			};
 
 			//移除已完成任务
