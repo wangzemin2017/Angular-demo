@@ -6,7 +6,7 @@
 				$window.localStorage.setItem('myStorage', JSON.stringify(tasks));
 			},
 			get: function(){
-				return JSON.parse($window.localStorage.getItem('myStorage')) || '[]';
+				return JSON.parse($window.localStorage.getItem('myStorage')) || [];
 			}
 		};
 	}]);

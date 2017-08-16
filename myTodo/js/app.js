@@ -3,17 +3,17 @@
 
 	// 创建一个myTodo模块和mainCtrl控制器，是入口文件
 	angular.module('myTodo', [])
-		.controller('mainCtrl' ,function($scope, todoFty){
+		.controller('mainCtrl' ,function($scope, todoFty, $location){
 
 			$scope.tasks = todoFty.get();
-			$scope.tasks = [
-				{ 
-					id: 1, 
-					input:'abc', 
-					completed:false
-				},{id:2, input:'def', completed:false},
-				{id:3, input:'test', completed:false}
-			];
+			// $scope.tasks = [
+			// 	{ 
+			// 		id: 1, 
+			// 		input:'abc', 
+			// 		completed:false
+			// 	},{id:2, input:'def', completed:false},
+			// 	{id:3, input:'test', completed:false}
+			// ];
 			//绑定 What needs to be done? 输入框的内容
 			$scope.input = '';
 
@@ -90,17 +90,22 @@
 
 			//All,Active,Completed
 			//console.log($location)
-
+			$scope.filterObj = {};
+			$scope.location = $location;
+			console.log($location.url());
+			$scope.$watch('location.url()', function(now, old){
+				switch (now){
+					case '/active': 
+						$scope.filterObj = {selected: true};
+						break;
+					case '/completed': 
+						$scope.filterObj = {selected: false};
+						break;
+					default: 
+						$scope.filterObj = {};
+				}
+			});
 	})
 	
-	// .directive('getFocused', [function(){
-	// 	return {
-	// 		scope: false,
-	// 		link: function(scope,element){
-	// 			scope.$watch('focused', function(new,old,scope){
-	// 				element[0].focus();
-	// 			}, true);
-	// 		}
-	// 	};
-	// }]);
+	
 })(angular);
