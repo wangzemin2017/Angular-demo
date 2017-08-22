@@ -88,21 +88,25 @@
 				}
 			};
 
+
 			//All,Active,Completed
 			//console.log($location)
 			$scope.filterObj = {};
 			$scope.location = $location;
-			console.log($location.url());
+			//console.log($location.url());
 			$scope.$watch('location.url()', function(now, old){
 				switch (now){
 					case '/active': 
-						$scope.filterObj = {selected: true};
+						$scope.filterObj = {completed: false};
+						//$scope.tasks = $scope.toggleLabel().undo;
 						break;
 					case '/completed': 
-						$scope.filterObj = {selected: false};
+						$scope.filterObj = {completed: true};
+						//$scope.tasks = $scope.toggleLabel().done;
 						break;
 					default: 
 						$scope.filterObj = {};
+						//$scope.tasks = todoFty.get();
 				}
 			});
 	})
