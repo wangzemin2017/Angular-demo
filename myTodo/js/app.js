@@ -29,6 +29,7 @@
 				//console.log($scope.tasks);
 				$scope.input = '';
 				$scope.save();
+				$scope.all = $scope.taskLeft() === 0 ? true : false;
 			};
 
 			//移除已完成任务
@@ -78,14 +79,14 @@
 				return left;
 			};
 
-			$scope.all = false;
+			$scope.all = $scope.taskLeft() === 0 ? true : false;
+			$scope.changeState = function(){
+				$scope.save();
+				$scope.all = $scope.taskLeft() === 0 ? true : false;
+			}
 			//选择所有任务为已完成
 			$scope.selectAll = function(){
-				if($scope.all == true){
-					$scope.tasks.forEach(task => task.completed = true);
-				}else{
-					$scope.tasks.forEach(task => task.completed = false);
-				}
+				$scope.tasks.forEach(task => task.completed = $scope.all);
 			};
 
 

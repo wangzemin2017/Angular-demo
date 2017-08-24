@@ -1,8 +1,5 @@
-/*
-
-app-template.css overrides
-
-remove this comment if used
-remove this file if not
-
-*/
+.bgIcon{
+	padding-left: 20px;
+	background: url(../image/dustbin.svg) left center no-repeat;
+	background-size: 20px 20px;
+}
